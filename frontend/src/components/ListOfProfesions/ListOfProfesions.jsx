@@ -1,18 +1,22 @@
-// ListaProfesiones.jsx
+import { useState, useEffect } from "react";
 import React from "react";
 import Profesion from "./Profesion/Profesion";
+import {getProfesions} from "../../services/serviceApi.js"
 
-const ListOfProfesions = () => {
-  const profesions = [
-    "Abogado",
-    "Arquitecto",
-    "Botánico",
-    "Computista",
-    "Economista",
-    "Técnico de sonido",
-    "Profesor",
-    "Linguista",
-  ];
+const ListOfProfesions = () =>{
+  const[profesiones, setProfesions]=useState([])
+  useEffect(()=>{
+    const fetchProfesions=async ()=>{
+      try {
+        const data=await getProfesions()
+        setProfesions(data.profesiones)
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+    fetchProfesions();
+  },[])
+
 
   return (
     <section className="content profesiones">
@@ -24,7 +28,7 @@ const ListOfProfesions = () => {
         >
           Listado de Profesiones
         </h4>
-        {profesions.map((profesion, index) => (
+        {profesiones.map((profesion, index) => (
           <Profesion key={index} nombre={profesion} />
         ))}
       </div>
