@@ -1,20 +1,20 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import Candidate from "./Candidate/Candidate";
-import {getCandidates} from "../../services/serviceApi.js"
+import { getCandidates } from "../../services/serviceApi.js";
 const ListOfCandidates = () => {
-  const  [aspirantes,setCandidates]=useState([])
-  useEffect(()=>{
-    const fetchCandidates=async()=>{
+  const [aspirantes, setCandidates] = useState([]);
+  useEffect(() => {
+    const fetchCandidates = async () => {
       try {
-        const data=await getCandidates()
-        setCandidates(data.aspirantes)
+        const data = await getCandidates();
+        setCandidates(data.data.applicants);
       } catch (error) {
         console.error(error);
       }
-    }
-    fetchCandidates()
-  },[])
+    };
+    fetchCandidates();
+  }, []);
 
   return (
     <section className="content aspirantes">
@@ -22,11 +22,11 @@ const ListOfCandidates = () => {
       <article className="person-boxes">
         {aspirantes.map((candidate, index) => (
           <Candidate
-          key={index}
-          nombre={candidate.nombre}
-          profesion={candidate.profesion.nombre}
-          imagen={candidate.imagen}
-        />
+            key={index}
+            nombre={candidate.name}
+            profesion={candidate.profession.name}
+            imagen={candidate.image}
+          />
         ))}
       </article>
     </section>

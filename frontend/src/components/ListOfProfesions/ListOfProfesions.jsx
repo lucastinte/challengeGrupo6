@@ -1,22 +1,21 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import Profesion from "./Profesion/Profesion";
-import {getProfesions} from "../../services/serviceApi.js"
+import { getProfesions } from "../../services/serviceApi.js";
 
-const ListOfProfesions = () =>{
-  const[profesiones, setProfesions]=useState([])
-  useEffect(()=>{
-    const fetchProfesions=async ()=>{
+const ListOfProfesions = () => {
+  const [profesiones, setProfesions] = useState([]);
+  useEffect(() => {
+    const fetchProfesions = async () => {
       try {
-        const data=await getProfesions()
-        setProfesions(data.profesiones)
+        const data = await getProfesions();
+        setProfesions(data.data.professions);
       } catch (error) {
         console.error("Error:", error);
       }
-    }
+    };
     fetchProfesions();
-  },[])
-
+  }, []);
 
   return (
     <section className="content profesiones">

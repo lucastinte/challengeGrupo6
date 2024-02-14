@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 const Menu = () => {
   return (
     <header className="menu-wrap">
@@ -13,15 +13,15 @@ const Menu = () => {
         <section className="menu">
           <h3>Opciones</h3>
           <ul>
-          <li>
-  <Link to="/presale">
-    <i
-      className="bi bi-building"
-      style={{ fontSize: "1.2rem", color: "cornflowerblue" }}
-    ></i>
-    - Empresas
-  </Link>
-</li>
+            <li>
+              <Link to="/presale">
+                <i
+                  className="bi bi-building"
+                  style={{ fontSize: "1.2rem", color: "cornflowerblue" }}
+                ></i>
+                - Empresas
+              </Link>
+            </li>
             <li>
               <Link to="/aspirantes">
                 <i
@@ -29,12 +29,12 @@ const Menu = () => {
                   style={{ fontSize: "1.2rem", color: "cornflowerblue" }}
                 ></i>
                 - Aspirantes
-               </Link>
+              </Link>
             </li>
             <li>
               <Link to="/profesiones">
                 <i className="bi bi-list-check"></i>- Profesiones
-               </Link>
+              </Link>
             </li>
             <li>
               <a href="#">
@@ -53,7 +53,6 @@ const Menu = () => {
           </ul>
         </section>
       </nav>
-      
     </header>
   );
 };
