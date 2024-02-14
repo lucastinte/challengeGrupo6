@@ -1,39 +1,61 @@
-const db = require("../../database/models");
+const { Applicant, Gender, Profession } = require("../../database/models");
 
 const apiController = {
-  profesions: async (req, res) => { // Marcar la función como async
+  professions: async (req, res) => {
     try {
-      // Buscar todas las profesiones
-      const profesiones = await db.Profesion.findAll();
-
-      // Extraer solo los nombres de las profesiones
-      const nombresProfesiones = profesiones.map((profesion) => {
-        return profesion.nombre;
+      const professions = await Profession.findAll();
+      const nameOfProfession = professions.map((profession) => {
+        return profession.name;
       });
-
-      // Devolver los nombres de las profesiones como un JSON
-      res.status(200).json({ profesiones: nombresProfesiones });
+      const response = {
+        meta: {
+          status: 200,
+          message: "Success",
+        },
+        data: {
+          professions: nameOfProfession,
+        },
+      };
+      res.status(200).json(response);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'Error interno del servidor' });
+      res.status(500).json({ message: "Internal Server Error" });
     }
   },
-  candidates: async (req, res) => { 
+  applicants: async (req, res) => {
     try {
-      const aspirantes = await db.Aspirante.findAll({
+      const applicants = await Applicant.findAll({
         include: [
-          { model: db.Sexo, as: 'sexo' },
-          { model: db.Profesion, as: 'profesion' }
-        ]
+          { model: Gender, as: "gender", attributes: ["name"] },
+          { model: Profession, as: "profession", attributes: ["name"] },
+        ],
+        attributes: {
+          exclude: [
+            "id",
+            "createdAt",
+            "updatedAt",
+            "deletedAt",
+            "professionId",
+            "genderId",
+          ],
+        },
       });
 
-      res.status(200).json({ aspirantes });
+      const response = {
+        meta: {
+          status: 200,
+          message: "Success",
+        },
+        data: {
+          applicants: applicants,
+        },
+      };
+      res.status(200).json(response);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'Error interno del servidor' });
+      res.status(500).json({ message: "Internal Server Error" });
     }
-  }
-
+  },
 };
 
 module.exports = apiController;
