@@ -11,6 +11,7 @@ const apiController = {
         meta: {
           status: 200,
           message: "Success",
+          length: nameOfProfession.length,
         },
         data: {
           professions: nameOfProfession,
