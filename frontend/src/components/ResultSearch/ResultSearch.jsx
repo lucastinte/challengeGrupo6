@@ -11,6 +11,7 @@ const ResultSearch = ({ searchResults }) => {
               <Candidate
                 key={index}
                 nombre={applicant.name}
+                apellido={applicant.lastName}
                 profesion={result.name} // Usamos result.name ya que parece ser la profesión del candidato
                 imagen={applicant.image}
               />

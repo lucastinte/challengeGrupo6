@@ -4,9 +4,11 @@ const Menu = () => {
   return (
     <header className="menu-wrap">
       <figure className="user">
+      <Link to="/" >
         <div className="user-avatar">
           <img src="./img/logo-dh.png" alt="Logo Digital House" />
         </div>
+      </Link>
         <figcaption>Digital House</figcaption>
       </figure>
       <nav>

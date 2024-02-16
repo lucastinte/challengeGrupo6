@@ -24,6 +24,7 @@ const ListOfCandidates = () => {
           <Candidate
             key={index}
             nombre={candidate.name}
+            apellido={candidate.lastName}
             profesion={candidate.profession.name}
             imagen={candidate.image}
           />

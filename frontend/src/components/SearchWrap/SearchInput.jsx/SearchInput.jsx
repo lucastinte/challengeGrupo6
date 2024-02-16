@@ -5,6 +5,9 @@ const SearchInput = ({ handleSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = async () => {
+    if (searchTerm.trim() === "") {
+      return;
+    }
     try {
       const data = await searchProfessions(searchTerm);
       handleSearchResults(data.meta.profession);
