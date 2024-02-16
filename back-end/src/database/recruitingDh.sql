@@ -1,23 +1,23 @@
-CREATE DATABASE recruitingRH;
+CREATE DATABASE IF NOT EXISTS recruitingRH;
 USE recruitingRH;
 
-CREATE TABLE professions (
+CREATE TABLE IF NOT EXISTS professions (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL
-    createdAt DATE
-    updatedAt  DATE
-    deletedAt DATE
+    name VARCHAR(50) NOT NULL,
+    createdAt DATETIME,
+    updatedAt DATETIME,
+    deletedAt DATETIME
 );
 
-CREATE TABLE genders (
+CREATE TABLE IF NOT EXISTS genders (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(20) NOT NULL
-    createdAt DATE
-    updatedAt  DATE
-    deletedAt DATE
+    name VARCHAR(20) NOT NULL,
+    createdAt DATETIME,
+    updatedAt DATETIME,
+    deletedAt DATETIME
 );
 
-CREATE TABLE applicants (
+CREATE TABLE IF NOT EXISTS applicants (
     id INT AUTO_INCREMENT PRIMARY KEY,
     dni INT UNIQUE NOT NULL ,
     name VARCHAR(100) NOT NULL,
@@ -29,10 +29,9 @@ CREATE TABLE applicants (
     genderId INT NOT NULL,
     image VARCHAR(255), 
     professionId INT NOT NULL,
+    createdAt DATETIME,
+    updatedAt DATETIME,
+    deletedAt DATETIME,
     FOREIGN KEY (genderId) REFERENCES genders(id),
     FOREIGN KEY (professionId) REFERENCES professions(id)
-    createdAt DATE
-    updatedAt  DATE
-    deletedAt DATE
 );
-

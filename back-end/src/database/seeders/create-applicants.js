@@ -44,7 +44,7 @@ module.exports = {
         professionId: 2,
       },
       {
-        dni: "33333333333",
+        dni: "333333333",
         name: "Tim",
         lastName: "Turner",
         email: "tim@example.com",

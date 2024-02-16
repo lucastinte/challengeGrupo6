@@ -1,4 +1,5 @@
-const { Applicant, Gender, Profession } = require("../../database/models");
+const { Op } = require("sequelize");
+const { Applicant, Gender, Profession, Sequelize } = require("../../database/models");
 
 const apiController = {
   professions: async (req, res) => {
@@ -57,6 +58,44 @@ const apiController = {
       res.status(500).json({ message: "Internal Server Error" });
     }
   },
+  searchApplicantsByProfession: async (req, res) => {
+try {
+  const {searchTerm}=req.body;
+  const profession =await Profession.findAll({
+    where:{
+      name:{
+        [Op.like]:`%${searchTerm}`
+      }
+    },
+    include: [
+      {
+        model: Applicant,
+        as: 'applicants',
+        attributes: { exclude: ["createdAt", "updatedAt", "deletedAt", "id"] },
+      }
+    ],
+    attributes: { exclude: ["createdAt", "updatedAt", "deletedAt","id"] },
+  });
+  
+  if (!profession) {
+    return res.status(404).json({ message: "Profession not found" });
+  }
+
+  const response = {
+    meta: {
+      status: 200,
+      message: "Success",
+      profession: profession,
+    },
+  };
+
+  res.status(200).json(response);
+
+} catch (error) {
+  console.error(error);
+  res.status(500).json({ message: "Internal Server Error" });
+}
+},
 };
 
 module.exports = apiController;
