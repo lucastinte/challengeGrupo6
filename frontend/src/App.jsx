@@ -1,5 +1,5 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import SearchWrap from "./components/SearchWrap/SearchWrap";
@@ -8,10 +8,20 @@ import Presale from "./views/Presale";
 import ListOfCandidates from "./views/ListOfCandidates"
 import ListOfProfesions from "./views/ListOfProfesions";
 import Index from "./views";
+import ResultSearch from "./components/ResultSearch/ResultSearch";
 function App() {
+  const [searchResults, setSearchResults] = useState([]);
+  const navigate = useNavigate();
+
+  const handleSearchResults = (results) => {
+    setSearchResults(results);
+    // Navegar a la vista de resultados al obtener resultados de búsqueda
+    navigate("/resultados");
+  };
+
   return (
     <div className="dashboard">
-      <SearchWrap />
+         <SearchWrap handleSearchResults={handleSearchResults} />
       <Menu />
       <main className="content-wrap">
       <Routes>
@@ -19,6 +29,7 @@ function App() {
         <Route path="/presale"  element={<Presale/>} />
         <Route path="/aspirantes" element={<ListOfCandidates/>} />
         <Route path="/profesiones" element={<ListOfProfesions/>} />
+        <Route path="/resultados" element={<ResultSearch searchResults={searchResults} />} />
         <Route path="*" element={<h1>404 - Not Found</h1>} />
     </Routes>
       </main>
