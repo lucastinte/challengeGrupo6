@@ -45,3 +45,24 @@ export async function searchProfessions(searchTerm) {
     throw new Error('Internal server error');
   }
 }
+export async function createApplicant(applicantData) {
+  try {
+    const response = await fetch('http://localhost:3001/api/candidates', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(applicantData)
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Error creating applicant');
+    }
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}

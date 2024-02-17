@@ -39,13 +39,13 @@ const Menu = () => {
               </Link>
             </li>
             <li>
-              <a href="#">
+            <Link to="/form">
                 <i
                   className="bi bi-person-vcard"
                   style={{ fontSize: "1.2rem", color: "cornflowerblue" }}
                 ></i>
                 - Postulate aquí
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#">

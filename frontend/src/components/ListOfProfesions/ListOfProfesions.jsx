@@ -27,8 +27,8 @@ const ListOfProfesions = () => {
         >
           Listado de Profesiones
         </h4>
-        {profesiones.map((profesion, index) => (
-          <Profesion key={index} nombre={profesion} />
+        {profesiones.map((profesion, key) => (
+          <Profesion key={profesion.id} nombre={profesion.name} />
         ))}
       </div>
     </section>
