@@ -5,17 +5,15 @@ const apiController = {
   professions: async (req, res) => {
     try {
       const professions = await Profession.findAll();
-      const nameOfProfession = professions.map((profession) => {
-        return profession.name;
-      });
+     
       const response = {
         meta: {
           status: 200,
           message: "Success",
-          length: nameOfProfession.length,
+        
         },
         data: {
-          professions: nameOfProfession,
+          professions: professions,
         },
       };
       res.status(200).json(response);
@@ -96,6 +94,65 @@ try {
   res.status(500).json({ message: "Internal Server Error" });
 }
 },
+createApplicant: async (req, res) => {
+  try {
+    const { dni, name, lastName, email, phone, linkedinProfile, birthDate, image, professionId, genderId } = req.body;
+
+    // Crear el nuevo candidato en la base de datos
+    const newApplicant = await Applicant.create({
+      dni,
+      name,
+      lastName,
+      email,
+      phone,
+      linkedinProfile,
+      birthDate,
+      image,
+      professionId,
+      genderId
+    });
+
+    // Devolver la respuesta con el nuevo candidato creado
+    res.status(201).json({
+      status: 201,
+      message: "Applicant created successfully",
+      data: newApplicant
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+},
+deleteApplicant:async(req,res)=>{
+  const {id}=req.params;
+  try {
+    const applicant=await Applicant.findByPk(id);
+    if (!applicant) {
+      return res.status(404).json({message:"Applicant not found"})
+    }
+    await applicant.destroy();
+    return res.status(200).json({ message: "Candidate deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+},
+updateApplicant:async(req,res)=>{
+  const {id}=req.params;
+    const newData=req.body;
+  try {
+    const applicant=await Applicant.findByPk(id);
+    if (!applicant) {
+      return res.status(404).json({ message: "applicant not found" });
+    }
+    await applicant.update(newData);
+
+      return res.status(200).json({ message: "applicant updated successfully", applicant });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal Server Error" });
+    
+  }
+}
 };
 
 module.exports = apiController;

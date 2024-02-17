@@ -7,6 +7,11 @@ router.get("/candidates", apiController.applicants);
 
 
 router.post("/profesions", apiController.searchApplicantsByProfession);
+router.post("/candidates", apiController.createApplicant);
 
+router.put("/candidates/:id", apiController.updateApplicant);
+
+
+router.delete("/candidates/:id", apiController.deleteApplicant);
 
 module.exports = router;
