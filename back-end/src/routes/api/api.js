@@ -6,7 +6,7 @@ const apiController = require("../../controllers/api/apiControllers");
 router.get("/profesions", apiController.professions);
 router.get("/candidates", apiController.applicants);
 
-
+router.get("/candidates/:id",apiController.applicantById)
 router.post("/profesions", apiController.searchApplicantsByProfession);
 router.post("/candidates",upload.single("image"), apiController.createApplicant);
 

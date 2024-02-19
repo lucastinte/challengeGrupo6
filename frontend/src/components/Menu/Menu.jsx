@@ -48,9 +48,9 @@ const Menu = () => {
               </Link>
             </li>
             <li>
-              <a href="#">
+            <Link to="/contact">
                 <i className="bi bi-chat-left-text"></i>- Contacto
-              </a>
+                </Link>
             </li>
           </ul>
         </section>

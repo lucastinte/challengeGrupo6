@@ -9,11 +9,12 @@ const ResultSearch = ({ searchResults }) => {
             <div>{result.name}</div>
             {result.applicants.map((applicant, index) => (
               <Candidate
-                key={index}
-                nombre={applicant.name}
-                apellido={applicant.lastName}
-                profesion={result.name} // Usamos result.name ya que parece ser la profesión del candidato
-                imagen={applicant.image}
+              key={applicant.id} // Usando el id como clave
+              id={applicant.id} 
+                name={applicant.name}
+                lastName={applicant.lastName}
+                profession={result.name} // Usamos result.name ya que parece ser la profesión del candidato
+                image={applicant.image}
               />
             ))}
           </div>

@@ -68,3 +68,17 @@ export async function createApplicant(applicantData) {
     throw error;
   }
 }
+export async function getCandidateById(id) {
+  try {
+    const response = await fetch(`http://localhost:3001/api/candidates/${id}`);
+    const data = await response.json();
+
+    if (response.status !== 200) {
+      throw new Error("Invalid values");
+    }
+
+    return data;
+  } catch (error) {
+    throw new Error("Internal Server Error");
+  }
+}

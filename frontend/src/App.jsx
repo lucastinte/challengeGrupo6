@@ -10,6 +10,8 @@ import ListOfProfesions from "./views/ListOfProfesions";
 import Index from "./views";
 import ResultSearch from "./components/ResultSearch/ResultSearch";
 import ApplicantForm from "./components/ApplicantForm/ApplicantForm";
+import CardCandidate from "./components/CardCandidate/CardCandidate";
+import Contact from "./components/Contact/Contact";
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const navigate = useNavigate();
@@ -32,6 +34,8 @@ function App() {
         <Route path="/profesiones" element={<ListOfProfesions/>} />
         <Route path="/form" element={<ApplicantForm/>} />
         <Route path="/resultados" element={<ResultSearch searchResults={searchResults} />} />
+        <Route path="/candidate/:id" element={<CardCandidate />} />
+        <Route path="/contact" element={<Contact/>} />
         <Route path="*" element={<h1>404 - Not Found</h1>} />
     </Routes>
       </main>

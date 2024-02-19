@@ -31,7 +31,6 @@ const apiController = {
         ],
         attributes: {
           exclude: [
-            "id",
             "createdAt",
             "updatedAt",
             "deletedAt",
@@ -56,6 +55,45 @@ const apiController = {
       res.status(500).json({ message: "Internal Server Error" });
     }
   },
+applicantById: async (req,res)=>{
+  const { id } = req.params;
+
+  try {
+    const applicant = await Applicant.findByPk(id, {
+      include: [
+        { model: Gender, as: "gender", attributes: ["name"] },
+        { model: Profession, as: "profession", attributes: ["name"] },
+      ],
+      attributes: {
+        exclude: [
+          "createdAt",
+          "updatedAt",
+          "deletedAt",
+          "professionId",
+          "genderId",
+        ],
+      },
+    });
+
+    if (!applicant) {
+      return res.status(404).json({ message: "Applicant not found" });
+    }
+
+    const response = {
+      meta: {
+        status: 200,
+        message: "Success",
+      },
+      data: {
+        applicant: applicant,
+      },
+    };
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+},
   searchApplicantsByProfession: async (req, res) => {
 try {
   const {searchTerm}=req.body;
@@ -69,10 +107,10 @@ try {
       {
         model: Applicant,
         as: 'applicants',
-        attributes: { exclude: ["createdAt", "updatedAt", "deletedAt", "id"] },
+        attributes: { exclude: ["createdAt", "updatedAt", "deletedAt", ] },
       }
     ],
-    attributes: { exclude: ["createdAt", "updatedAt", "deletedAt","id"] },
+    attributes: { exclude: ["createdAt", "updatedAt", "deletedAt",] },
   });
   
   if (!profession) {

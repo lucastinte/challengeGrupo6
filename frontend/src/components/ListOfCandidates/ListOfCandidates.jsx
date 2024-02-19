@@ -22,11 +22,12 @@ const ListOfCandidates = () => {
       <article className="person-boxes">
         {aspirantes.map((candidate, index) => (
           <Candidate
-            key={index}
-            nombre={candidate.name}
-            apellido={candidate.lastName}
-            profesion={candidate.profession.name}
-            imagen={candidate.image}
+          key={candidate.id} // Usando el id como clave
+          id={candidate.id} 
+            name={candidate.name}
+            lastName={candidate.lastName}
+            profession={candidate.profession.name}
+            image={candidate.image}
           />
         ))}
       </article>
