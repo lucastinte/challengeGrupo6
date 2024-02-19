@@ -47,12 +47,14 @@ export async function searchProfessions(searchTerm) {
 }
 export async function createApplicant(applicantData) {
   try {
+    const formData = new FormData();
+    for (const key in applicantData) {
+      formData.append(key, applicantData[key]);
+    }
+
     const response = await fetch('http://localhost:3001/api/candidates', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(applicantData)
+      body: formData
     });
 
     const data = await response.json();

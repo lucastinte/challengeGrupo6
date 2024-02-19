@@ -9,5 +9,6 @@ app.use(cors());
 app.use(express.json());
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log("Servidor corriendo en el puerto " + PORT));
+app.use('/api/candidates/images', express.static('src/images'));
 
 app.use("/api", apiRouter);

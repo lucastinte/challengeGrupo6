@@ -1,4 +1,3 @@
-"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -28,7 +27,7 @@ module.exports = {
         linkedinProfile: "gloria_linkedin",
         birthDate: "1990-01-01",
         genderId: 2,
-        image: "./src/images/foto1.jpg",
+        image: "foto1.jpg",
         professionId: 1,
       },
       {
@@ -40,7 +39,7 @@ module.exports = {
         linkedinProfile: "daniel_linkedin",
         birthDate: "1985-05-05",
         genderId: 1,
-        image: "./src/images/foto2.jpg",
+        image: "foto2.jpg",
         professionId: 2,
       },
       {
@@ -52,7 +51,7 @@ module.exports = {
         linkedinProfile: "tim_linkedin",
         birthDate: "1980-12-12",
         genderId: 1,
-        image: "./src/images/foto3.jpg",
+        image: "foto3.jpg",
         professionId: 3,
       },
       {
@@ -64,7 +63,7 @@ module.exports = {
         linkedinProfile: "rocio_linkedin",
         birthDate: "1992-08-15",
         genderId: 2,
-        image: "./src/images/foto4.jpg",
+        image: "foto4.jpg",
         professionId: 4,
       },
       {
@@ -76,7 +75,7 @@ module.exports = {
         linkedinProfile: "victor_linkedin",
         birthDate: "1998-08-15",
         genderId: 1,
-        image: "./src/images/foto5.jpg",
+        image: "foto5.jpg",
         professionId: 5,
       },
       {
@@ -88,7 +87,7 @@ module.exports = {
         linkedinProfile: "luis_linkedin",
         birthDate: "1975-08-15",
         genderId: 1,
-        image: "./src/images/foto6.jpg",
+        image: "foto6.jpg",
         professionId: 6,
       },
     ]);

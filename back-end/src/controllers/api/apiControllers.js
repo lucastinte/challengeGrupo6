@@ -96,8 +96,8 @@ try {
 },
 createApplicant: async (req, res) => {
   try {
-    const { dni, name, lastName, email, phone, linkedinProfile, birthDate, image, professionId, genderId } = req.body;
-
+    const { dni, name, lastName, email, phone, linkedinProfile, birthDate, professionId, genderId } = req.body;
+    const { filename } = req.file;
     // Crear el nuevo candidato en la base de datos
     const newApplicant = await Applicant.create({
       dni,
@@ -107,7 +107,7 @@ createApplicant: async (req, res) => {
       phone,
       linkedinProfile,
       birthDate,
-      image,
+      image:filename,
       professionId,
       genderId
     });

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getProfesions, createApplicant } from '../../services/serviceApi';
 const ApplicantForm = ({ handleSubmit }) => {
+  const navigate = useNavigate();
   const [dni, setDni] = useState('');
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -8,7 +10,7 @@ const ApplicantForm = ({ handleSubmit }) => {
   const [phone, setPhone] = useState('');
   const [linkedinProfile, setLinkedinProfile] = useState('');
   const [birthDate, setBirthDate] = useState('');
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
   const [professionId, setProfessionId] = useState('');
   const [genderId, setGenderId] = useState('');
   const [professions, setProfessions] = useState([]);
@@ -26,7 +28,7 @@ const ApplicantForm = ({ handleSubmit }) => {
   };
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-  
+    console.log('Imagen seleccionada:', image);
     const applicantData = {
       dni,
       name,
@@ -42,6 +44,7 @@ const ApplicantForm = ({ handleSubmit }) => {
   
     try {
        await createApplicant(applicantData); 
+       navigate('/');
     } catch (error) {
       console.error('Error creating applicant:', error.message);
     }
@@ -49,7 +52,7 @@ const ApplicantForm = ({ handleSubmit }) => {
   return (
     <div className="container mt-4" style={{ maxWidth: '250px' }}>
       <h2>Postularse</h2>
-      <form onSubmit={handleSubmitForm}>
+      <form onSubmit={handleSubmitForm} encType="multipart/form-data">
       <div className="mb-3">
           <label htmlFor="dni" className="form-label">DNI</label>
           <input type="text" className="form-control" id="dni" value={dni} onChange={(e) => setDni(e.target.value)} />
@@ -78,10 +81,7 @@ const ApplicantForm = ({ handleSubmit }) => {
           <label htmlFor="birthDate" className="form-label">Fecha de Nacimiento</label>
           <input type="date" className="form-control" id="birthDate" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} />
         </div>
-        <div className="mb-3">
-          <label htmlFor="image" className="form-label">Imagen</label>
-          <input type="text" className="form-control" id="image" value={image} onChange={(e) => setImage(e.target.value)} />
-        </div>
+        
         <div className="mb-3">
           <label htmlFor="professionId" className="form-label">Profesión</label>
           <select
@@ -108,6 +108,10 @@ const ApplicantForm = ({ handleSubmit }) => {
             <option value="1">Masculino</option>
             <option value="2">Femenino</option>
           </select>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="image" className="form-label">Imagen</label>
+          <input type="file" className="form-control" id="image" onChange={(e) => setImage(e.target.files[0])} />
         </div>
         <button type="submit" className="btn btn-primary">Crear aspirante</button>
       </form>
