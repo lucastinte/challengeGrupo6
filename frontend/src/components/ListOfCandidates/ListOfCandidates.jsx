@@ -17,7 +17,7 @@ const ListOfCandidates = () => {
   }, []);
 
   return (
-    <section className="content aspirantes">
+    <section className="content-aspirantes">
       <h2>Aspirantes</h2>
       <article className="person-boxes">
         {aspirantes.map((candidate, index) => (

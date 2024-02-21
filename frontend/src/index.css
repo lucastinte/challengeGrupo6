@@ -348,3 +348,87 @@ body {
 .content-wrap .person-boxes .person-box .box-actions button:hover svg circle {
   fill: #2b3a60;
 }
+.navbar-toggler img{
+  display: none;
+}
+.search-wrap .search label input{
+  width: 25vw;
+}
+.custom-dropdown {
+  display: inline-block;
+}
+.navbar-toggler{
+  height: 25px;
+}
+
+#dropdown-basic {
+  background-color: white; 
+  border: none; 
+}
+
+.logo-img {
+  height: 50px; 
+  margin-right: 10px;
+}
+
+#dropdown-basic .navbar-toggler-icon {
+  filter: brightness(0) invert(1); 
+}
+.content-wrap h2 {
+  text-align: center;
+  font-weight: bold;
+}
+@media  (max-width: 700px) {
+  
+  .menu-wrap{
+    display: none;
+  }
+  figure{
+    margin: 0 0 26px;
+  }
+  .navbar-toggler img{
+    display: block;
+  }
+  .menu-desktop{
+    display: none;
+  }
+  .dashboard{
+    grid-template-columns: none;
+  }
+  .search-wrap {
+    padding: 0 ;
+   }
+   .navbar-toggler-icon {
+    width: 5.5em;
+    vertical-align: super;
+     }
+
+     .list-unstyled a{
+      text-decoration: none;
+      color: #99a0b0;
+     }
+     .list-unstyled a i{
+     font-size: 1.2rem;
+    color: cornflowerblue;
+    margin-right: 0.5rem;
+      }
+}
+@media  (max-width: 450px) {
+  figure{
+    margin: 0 0 26px;
+  }
+  .navbar-toggler img{
+    display: block;
+  }
+ .bi-person-add{
+  display: none;
+ }
+ .bi-box-arrow-right{
+  display: none;
+ }
+ .search-wrap .user-actions button {
+  width: 15px;
+  height: 0;
+ }
+     
+}

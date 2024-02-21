@@ -25,7 +25,7 @@ function App() {
   return (
     <div className="dashboard">
          <SearchWrap handleSearchResults={handleSearchResults} />
-      <Menu />
+        <Menu />
       <main className="content-wrap">
       <Routes>
       <Route path="/"  element={<Index/>} />

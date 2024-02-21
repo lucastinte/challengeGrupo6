@@ -55,7 +55,7 @@ const Menu = () => {
           </ul>
         </section>
       </nav>
-    </header>
+   </header>
   );
 };
 
