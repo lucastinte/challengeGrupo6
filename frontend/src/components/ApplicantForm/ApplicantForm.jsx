@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getProfesions, createApplicant } from '../../services/serviceApi';
-const ApplicantForm = ({ handleSubmit }) => {
+const ApplicantForm = () => {
   const navigate = useNavigate();
   const [dni, setDni] = useState('');
   const [name, setName] = useState('');

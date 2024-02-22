@@ -394,6 +394,8 @@ body {
   }
   .dashboard{
     grid-template-columns: none;
+    display: block;
+    overflow: auto;
   }
   .search-wrap {
     padding: 0 ;
