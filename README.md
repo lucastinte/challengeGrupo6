@@ -20,7 +20,7 @@ y finalmente levantamos el servidor
 `npm test`
 
 Ahora para levantar el frontend
-entramos en el directorio front-end
+entramos en el directorio frontend
 ejecutamos 
 npm i
 
